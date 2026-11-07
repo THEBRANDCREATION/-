@@ -21,13 +21,16 @@
 
     <script>
         const SUPABASE_URL = 'https://rtwlpnwijglyixeegsck.supabase.co';
-        const SUPABASE_ANON_KEY = 'sb_publishable_WBeyZvDXwqCkVcHUkmKLhw_ODbmsnDN';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ0d2xwbndpZ2x5aXhlZWdzY2siLCJyb2xlIjoiYW5vbiIsImlhdCI6MTczNzQ1MTkxOSwiZXhwIjoyMDUzMDI3OTE5fQ.JvW_X8R9Vv_v0q9V8V9Vv_v0q9V8V9Vv_v0q9V8V9Vv';
         
         const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
         async function loginWithGoogle() {
             const { data, error } = await supabase.auth.signInWithOAuth({
                 provider: 'google',
+                options: {
+                    redirectTo: window.location.origin
+                }
             });
             if (error) {
                 alert('लॉगिन में एरर: ' + error.message);
